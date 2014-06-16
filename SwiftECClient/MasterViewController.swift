@@ -11,7 +11,7 @@ import UIKit
 class MasterViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, APIRequestDelegate {
 
     var tableView: UITableView!
-    var requester: APIRequest?
+    let requester: APIRequest!
     var jsonArray: NSArray = NSArray()
     let cellID: String = "cellID"
     
@@ -23,8 +23,8 @@ class MasterViewController: UIViewController, UITableViewDataSource, UITableView
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.requester?.request()
+        
+        self.requester.request()
     }
     
     override func loadView() {
@@ -40,14 +40,20 @@ class MasterViewController: UIViewController, UITableViewDataSource, UITableView
     func didRequest(data: NSData, responseHeaders: NSDictionary, error: NSError?) {
         
         if (error) {
-            println("didFinish Error")
+            println("error did Request")
         }
         else {
-            self.jsonArray = Parser.jsonParser(data)
             
-            dispatch_async(dispatch_get_main_queue(), {
-                self.tableView.reloadData()
+            if let validArray: NSArray = Parser.jsonParser(data) {
+                self.jsonArray = validArray
+                
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.tableView.reloadData()
                 })
+            }
+            else {
+                println("error json parser")
+            }
         }
         
     }
@@ -63,7 +69,6 @@ class MasterViewController: UIViewController, UITableViewDataSource, UITableView
     func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
         
         let cell:UITableViewCell = self.tableView.dequeueReusableCellWithIdentifier(cellID) as UITableViewCell
-        
         let item: NSDictionary = self.jsonArray[indexPath.row] as NSDictionary
         
         cell.lineBreakMode = .ByCharWrapping
@@ -83,9 +88,9 @@ class MasterViewController: UIViewController, UITableViewDataSource, UITableView
             dispatch_async(q_main, {
                 cell.image = image
                 cell.layoutSubviews()
-                })
-            
             })
+            
+        })
         
         return cell
     }

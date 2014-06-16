@@ -15,9 +15,8 @@ protocol APIRequestDelegate: NSObjectProtocol {
 class APIRequest: NSObject, NSURLSessionDelegate, NSURLSessionDataDelegate {
     
     var delegate: APIRequestDelegate?
-    var responseData: NSMutableData?
+    var responseData: NSMutableData = NSMutableData()
     var responseHeaders: NSDictionary = NSDictionary()
-    var operationQueue: NSOperationQueue = NSOperationQueue()
     
     init(delegate: APIRequestDelegate) {
         super.init()
@@ -30,8 +29,9 @@ class APIRequest: NSObject, NSURLSessionDelegate, NSURLSessionDataDelegate {
         var appID:String = APPID.appID()
         var urlString:String = "http://shopping.yahooapis.jp/ShoppingWebService/V1/json/itemSearch?appid=\(appID)&category_id=1034&hits=20"
         var url: NSURL = NSURL.URLWithString(urlString)
-        var config: NSURLSessionConfiguration = NSURLSessionConfiguration.defaultSessionConfiguration()
-        var session: NSURLSession = NSURLSession(configuration: config, delegate: self, delegateQueue: NSOperationQueue.mainQueue())
+        var session: NSURLSession = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration(),
+                                                      delegate: self,
+                                                 delegateQueue: NSOperationQueue())
         var dataTask: NSURLSessionDataTask = session.dataTaskWithURL(url)
         dataTask.resume()
     }
@@ -41,8 +41,8 @@ class APIRequest: NSObject, NSURLSessionDelegate, NSURLSessionDataDelegate {
         let statusCode:Int = (response as NSHTTPURLResponse).statusCode
         
         if (statusCode >= 400) {
-            let dict:Dictionary = [NSLocalizedDescriptionKey: "statusCode error"]
-            let error:NSError = NSError.errorWithDomain("swift.sample.app", code: statusCode, userInfo: dict)
+            let dict: Dictionary = [NSLocalizedDescriptionKey: "statusCode error"]
+            let error: NSError = NSError.errorWithDomain("swift.sample.app", code: statusCode, userInfo: dict)
             URLSession(session, task: dataTask, didCompleteWithError: error)
             return
         }
@@ -53,10 +53,10 @@ class APIRequest: NSObject, NSURLSessionDelegate, NSURLSessionDataDelegate {
     }
     
     func URLSession(session: NSURLSession!, dataTask: NSURLSessionDataTask!, didReceiveData data: NSData!) {
-        self.responseData?.appendData(data)
+        self.responseData.appendData(data)
     }
     
     func URLSession(session: NSURLSession!, task: NSURLSessionTask!, didCompleteWithError error: NSError!) {
-        self.delegate?.didRequest(self.responseData!, responseHeaders: self.responseHeaders, error: error)
+        self.delegate?.didRequest(self.responseData, responseHeaders: self.responseHeaders, error: error)
     }
 }

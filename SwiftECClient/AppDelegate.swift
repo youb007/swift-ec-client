@@ -19,7 +19,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         self.window!.backgroundColor = UIColor.whiteColor()
         
-//        init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?)
         let masterVC: MasterViewController = MasterViewController(nibName: nil, bundle: nil)
         let nav: UINavigationController = UINavigationController(rootViewController: masterVC)
         self.window!.rootViewController = nav
