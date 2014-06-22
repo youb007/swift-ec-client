@@ -3,7 +3,7 @@
 //  SwiftECClient
 //
 //  Created by naoto yamaguchi on 2014/06/10.
-//  Copyright (c) 2014年 naoto yamaguchi. All rights reserved.
+//  Copyright (c) 2014 naoto yamaguchi. All rights reserved.
 //
 
 import UIKit

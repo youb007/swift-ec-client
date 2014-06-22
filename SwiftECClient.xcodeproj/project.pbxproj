@@ -14,6 +14,7 @@
 		5C721AAD19468E0100EF492E /* APIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C721AAC19468E0100EF492E /* APIRequest.swift */; };
 		5C721AAF19468E1000EF492E /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C721AAE19468E1000EF492E /* Parser.swift */; };
 		5C721AB11946976500EF492E /* APPID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C721AB01946976500EF492E /* APPID.swift */; };
+		5C753DB31950F64D0083DC2B /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C753DB21950F64D0083DC2B /* Util.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +39,7 @@
 		5C721AAC19468E0100EF492E /* APIRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIRequest.swift; sourceTree = "<group>"; };
 		5C721AAE19468E1000EF492E /* Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
 		5C721AB01946976500EF492E /* APPID.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APPID.swift; sourceTree = "<group>"; };
+		5C753DB21950F64D0083DC2B /* Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +86,7 @@
 				5C721AAC19468E0100EF492E /* APIRequest.swift */,
 				5C721AAE19468E1000EF492E /* Parser.swift */,
 				5C721AB01946976500EF492E /* APPID.swift */,
+				5C753DB21950F64D0083DC2B /* Util.swift */,
 				5C721A9419468D6B00EF492E /* Images.xcassets */,
 				5C721A9019468D6B00EF492E /* Supporting Files */,
 			);
@@ -216,6 +219,7 @@
 				5C721AAB19468DE900EF492E /* MasterViewController.swift in Sources */,
 				5C721AAD19468E0100EF492E /* APIRequest.swift in Sources */,
 				5C721A9319468D6B00EF492E /* AppDelegate.swift in Sources */,
+				5C753DB31950F64D0083DC2B /* Util.swift in Sources */,
 				5C721AB11946976500EF492E /* APPID.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -393,6 +397,7 @@
 				5C721AA619468D6B00EF492E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		5C721AA719468D6B00EF492E /* Build configuration list for PBXNativeTarget "SwiftECClientTests" */ = {
 			isa = XCConfigurationList;
@@ -401,6 +406,7 @@
 				5C721AA919468D6B00EF492E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

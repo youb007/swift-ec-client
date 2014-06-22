@@ -3,7 +3,7 @@
 //  SwiftECClient
 //
 //  Created by naoto yamaguchi on 2014/06/10.
-//  Copyright (c) 2014年 naoto yamaguchi. All rights reserved.
+//  Copyright (c) 2014 naoto yamaguchi. All rights reserved.
 //
 
 import UIKit
@@ -26,13 +26,13 @@ class APIRequest: NSObject, NSURLSessionDelegate, NSURLSessionDataDelegate {
     
     // APPID class is .gitignore
     func request() {
-        var appID:String = APPID.appID()
-        var urlString:String = "http://shopping.yahooapis.jp/ShoppingWebService/V1/json/itemSearch?appid=\(appID)&category_id=1034&hits=20"
-        var url: NSURL = NSURL.URLWithString(urlString)
-        var session: NSURLSession = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration(),
+        let appID:String = APPID.appID()
+        let urlString:String = "http://shopping.yahooapis.jp/ShoppingWebService/V1/json/itemSearch?appid=\(appID)&category_id=1034&hits=20"
+        let url: NSURL = NSURL.URLWithString(urlString)
+        let session: NSURLSession = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration(),
                                                       delegate: self,
                                                  delegateQueue: NSOperationQueue())
-        var dataTask: NSURLSessionDataTask = session.dataTaskWithURL(url)
+        let dataTask: NSURLSessionDataTask = session.dataTaskWithURL(url)
         dataTask.resume()
     }
     

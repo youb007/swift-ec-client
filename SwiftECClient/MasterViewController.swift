@@ -3,7 +3,7 @@
 //  SwiftECClient
 //
 //  Created by naoto yamaguchi on 2014/06/10.
-//  Copyright (c) 2014年 naoto yamaguchi. All rights reserved.
+//  Copyright (c) 2014 naoto yamaguchi. All rights reserved.
 //
 
 import UIKit
@@ -40,11 +40,11 @@ class MasterViewController: UIViewController, UITableViewDataSource, UITableView
     func didRequest(data: NSData, responseHeaders: NSDictionary, error: NSError?) {
         
         if (error) {
-            println("error did Request")
+            println("error request")
         }
         else {
             
-            if let validArray: NSArray = Parser.jsonParser(data) {
+            if let validArray: NSArray = Parser.jsonParser(data) as? NSArray {
                 self.jsonArray = validArray
                 
                 dispatch_async(dispatch_get_main_queue(), {
@@ -68,6 +68,7 @@ class MasterViewController: UIViewController, UITableViewDataSource, UITableView
     
     func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
         
+        // refactor custom cell
         let cell:UITableViewCell = self.tableView.dequeueReusableCellWithIdentifier(cellID) as UITableViewCell
         let item: NSDictionary = self.jsonArray[indexPath.row] as NSDictionary
         

@@ -3,7 +3,7 @@
 //  SwiftECClient
 //
 //  Created by naoto yamaguchi on 2014/06/10.
-//  Copyright (c) 2014年 naoto yamaguchi. All rights reserved.
+//  Copyright (c) 2014 naoto yamaguchi. All rights reserved.
 //
 
 import UIKit
@@ -20,16 +20,29 @@ class Parser: NSObject {
             return nil;
         }
         
-        // keyにアクセスする時はoptional bindingがいいかも
-        let resultJson: NSDictionary = json.objectForKey("ResultSet")?.objectForKey("0")?.objectForKey("Result") as NSDictionary
-        let count: Int = resultJson.count - 3
-        
-        // mapで書ける?
-        for i: Int in 0..count {
-            let num: String = "\(i)"
-            itemsArray.addObject(resultJson[num])
+        if let result = self.getResultJSON(json) as? NSDictionary {
+            
+            let count: Int = result.count - 3
+            for i: Int in 0..count {
+                let num: String = "\(i)"
+                itemsArray.addObject(result[num])
+            }
+            
+            return itemsArray
         }
         
-        return itemsArray
+        return nil
     }
+    
+    class func getResultJSON(json: NSDictionary!) -> NSDictionary? {
+        
+        if let validResultSetJson = json["ResultSet"]?["0"] as? NSDictionary {
+            if let validResultJson = validResultSetJson["Result"] as? NSDictionary {
+                return validResultJson as NSDictionary
+            }
+        }
+        
+        return nil
+    }
+    
 }
