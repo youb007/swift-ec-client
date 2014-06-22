@@ -34,7 +34,7 @@ class MasterViewController: UIViewController, UITableViewDataSource, UITableView
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.view.addSubview(self.tableView)
-        tableView.registerClass(UITableViewCell.classForCoder(), forCellReuseIdentifier: cellID)
+        self.tableView.registerClass(UITableViewCell.classForCoder(), forCellReuseIdentifier: cellID)
     }
     
     func didRequest(data: NSData, responseHeaders: NSDictionary, error: NSError?) {
@@ -43,7 +43,6 @@ class MasterViewController: UIViewController, UITableViewDataSource, UITableView
             println("error request")
         }
         else {
-            
             if let validArray: NSArray = Parser.jsonParser(data) as? NSArray {
                 self.jsonArray = validArray
                 

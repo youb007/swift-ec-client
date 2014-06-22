@@ -30,7 +30,6 @@ class Parser: NSObject {
             
             return itemsArray
         }
-        
         return nil
     }
     
@@ -41,7 +40,6 @@ class Parser: NSObject {
                 return validResultJson as NSDictionary
             }
         }
-        
         return nil
     }
     
