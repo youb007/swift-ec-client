@@ -34,7 +34,7 @@ class MasterViewController: UIViewController, UITableViewDataSource, UITableView
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.view.addSubview(self.tableView)
-        self.tableView.registerClass(UITableViewCell.classForCoder(), forCellReuseIdentifier: cellID)
+        self.tableView.registerClass(CustomCell.classForCoder(), forCellReuseIdentifier: cellID)
     }
     
     func didRequest(data: NSData, responseHeaders: NSDictionary, error: NSError?) {
@@ -67,30 +67,9 @@ class MasterViewController: UIViewController, UITableViewDataSource, UITableView
     
     func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
         
-        // refactor custom cell
-        let cell:UITableViewCell = self.tableView.dequeueReusableCellWithIdentifier(cellID) as UITableViewCell
+        let cell: CustomCell = self.tableView.dequeueReusableCellWithIdentifier(cellID) as CustomCell
         let item: NSDictionary = self.jsonArray[indexPath.row] as NSDictionary
-        
-        cell.lineBreakMode = .ByCharWrapping
-        cell.textLabel.numberOfLines = 0
-        cell.text = item["Name"] as String
-        
-        var q_global: dispatch_queue_t = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
-        var q_main: dispatch_queue_t = dispatch_get_main_queue()
-        
-        dispatch_async(q_global, {
-            
-            var imagePath: String = item.objectForKey("Image")?.objectForKey("Medium") as String
-            var imageURL: NSURL = NSURL.URLWithString(imagePath)
-            var imageData: NSData = NSData(contentsOfURL: imageURL)
-            var image: UIImage = UIImage(data: imageData)
-            
-            dispatch_async(q_main, {
-                cell.image = image
-                cell.layoutSubviews()
-            })
-            
-        })
+        cell.setItemEntity(item, indexPath: indexPath)
         
         return cell
     }

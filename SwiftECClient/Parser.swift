@@ -14,7 +14,9 @@ class Parser: NSObject {
         
         var itemsArray: NSMutableArray = NSMutableArray()
         var jsonError: NSError?
-        var json: NSDictionary = NSJSONSerialization.JSONObjectWithData(responseData, options: NSJSONReadingOptions.AllowFragments, error: &jsonError) as NSDictionary
+        var json: NSDictionary = NSJSONSerialization.JSONObjectWithData(responseData,
+                                                               options: NSJSONReadingOptions.AllowFragments,
+                                                                 error: &jsonError) as NSDictionary
         
         if jsonError {
             return nil;
