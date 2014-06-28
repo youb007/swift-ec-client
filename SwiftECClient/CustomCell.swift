@@ -12,8 +12,8 @@ class CustomCell: UITableViewCell {
     
     var titleLabel: UILabel = UILabel()
     var descriptionLabel: UILabel = UILabel()
-    var itemImage: UIImageView = UIImageView()
-    var imageChache: Dictionary<NSIndexPath, UIImage> = Dictionary<NSIndexPath, UIImage>()
+    var itemImage: UIImageView = UIImageView()    
+    var imageCache: ImageCache = ImageCache()
 
     init(style: UITableViewCellStyle, reuseIdentifier: String) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -37,6 +37,9 @@ class CustomCell: UITableViewCell {
         self.itemImage.frame = CGRect(x: 15, y: 10, width: 60, height: 60)
         self.contentView.addSubview(self.itemImage)
         
+        // star button
+        
+        
     }
     
     func setItemEntity(entity: NSDictionary, indexPath: NSIndexPath) {
@@ -47,8 +50,9 @@ class CustomCell: UITableViewCell {
         let q_global: dispatch_queue_t = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
         let q_main: dispatch_queue_t = dispatch_get_main_queue()
         
-        if imageChache[indexPath] {
-            self.itemImage.image = self.imageChache[indexPath] as UIImage
+        // image chache method
+        if self.imageCache.dequeueImageByIndexPath(indexPath) {
+            self.itemImage.image = self.imageCache.dequeueImageByIndexPath(indexPath)
         }
         else {
             
@@ -59,7 +63,7 @@ class CustomCell: UITableViewCell {
                 let imageData: NSData = NSData(contentsOfURL: imageURL)
                 let image: UIImage = UIImage(data: imageData)
                 
-                self.imageChache[indexPath] = image
+                self.imageCache.enqueueImage(image, indexPath: indexPath)
                 
                 dispatch_async(q_main, {
                     self.itemImage.image = image

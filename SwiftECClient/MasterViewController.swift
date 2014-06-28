@@ -27,6 +27,9 @@ class MasterViewController: UIViewController, UITableViewDataSource, UITableView
         self.requester.request()
     }
     
+    func itemRequest() {
+    }
+    
     override func loadView() {
         super.loadView()
         
