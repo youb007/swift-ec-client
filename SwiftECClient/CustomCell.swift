@@ -12,7 +12,8 @@ class CustomCell: UITableViewCell {
     
     var titleLabel: UILabel = UILabel()
     var descriptionLabel: UILabel = UILabel()
-    var itemImage: UIImageView = UIImageView()    
+    var itemImage: UIImageView = UIImageView()
+    var starButton: UIButton = UIButton()
     var imageCache: ImageCache = ImageCache()
 
     init(style: UITableViewCellStyle, reuseIdentifier: String) {
@@ -34,12 +35,16 @@ class CustomCell: UITableViewCell {
         self.contentView.addSubview(self.descriptionLabel)
         
         // image
-        self.itemImage.frame = CGRect(x: 15, y: 10, width: 60, height: 60)
+        self.itemImage.frame = CGRect(x: 10, y: 15, width: 65, height: 65)
         self.contentView.addSubview(self.itemImage)
         
         // star button
-        
-        
+        self.starButton.frame = CGRect(x: 90, y: 85, width: 90, height: 25)
+        self.starButton.setTitle("Star", forState: .Normal)
+        self.starButton.backgroundColor = UIColor.grayColor()
+        self.starButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        self.starButton.setTitleColor(UIColor.lightGrayColor(), forState: .Highlighted)
+        self.contentView.addSubview(self.starButton)
     }
     
     func setItemEntity(entity: NSDictionary, indexPath: NSIndexPath) {
@@ -74,6 +79,10 @@ class CustomCell: UITableViewCell {
             
         }
         
+    }
+    
+    class func cellHeight() -> CGFloat! {
+        return 120
     }
     
     override func awakeFromNib() {
