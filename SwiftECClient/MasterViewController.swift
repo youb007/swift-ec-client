@@ -24,10 +24,11 @@ class MasterViewController: UIViewController, UITableViewDataSource, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.requester.request()
+        self.itemRequest()
     }
     
     func itemRequest() {
+        self.requester.request()
     }
     
     override func loadView() {
