@@ -74,8 +74,23 @@ class MasterViewController: UIViewController, UITableViewDataSource, UITableView
         let cell: CustomCell = self.tableView.dequeueReusableCellWithIdentifier(cellID) as CustomCell
         let item: NSDictionary = self.jsonArray[indexPath.row] as NSDictionary
         cell.setItemEntity(item, indexPath: indexPath)
+        cell.starButton.addTarget(self, action: Selector("pressStarButton:event:"), forControlEvents: .TouchUpInside)
         
         return cell
+    }
+    
+    func pressStarButton(sender: UIButton, event: UIEvent) {
+        let indexPath: NSIndexPath = self.indexPathForControlEvent(event)
+        // core data insert ["Code"]
+        //
+        //
+    }
+    
+    func indexPathForControlEvent(event: UIEvent) -> NSIndexPath {
+        let touch: UITouch = event.allTouches().anyObject() as UITouch
+        let point: CGPoint = touch.locationInView(self.tableView)
+        let indexPath: NSIndexPath = self.tableView.indexPathForRowAtPoint(point)
+        return indexPath
     }
     
     override func didReceiveMemoryWarning() {
