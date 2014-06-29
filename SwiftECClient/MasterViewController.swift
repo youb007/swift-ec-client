@@ -17,6 +17,7 @@ class MasterViewController: UIViewController, UITableViewDataSource, UITableView
     
     init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        
         self.title = "Swift EC Client"
         self.requester = APIRequest(delegate: self)
     }
@@ -79,8 +80,19 @@ class MasterViewController: UIViewController, UITableViewDataSource, UITableView
         return cell
     }
     
+    func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!) {
+        self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        
+        let item: NSDictionary = self.jsonArray[indexPath.row] as NSDictionary
+        let urlString: String = item["Url"] as String
+        let webBrowser: WebBrowserController = WebBrowserController(urlString: urlString)
+        self.navigationController.pushViewController(webBrowser, animated: true)
+    }
+    
     func pressStarButton(sender: UIButton, event: UIEvent) {
         let indexPath: NSIndexPath = self.indexPathForControlEvent(event)
+        let item: NSDictionary = self.jsonArray[indexPath.row] as NSDictionary
+        println("\(item)")
         // core data insert ["Code"]
         //
         //
