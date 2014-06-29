@@ -8,7 +8,7 @@
 
 import UIKit
 
-class WebBrowserController: UIViewController, UIWebViewDelegate {
+class WebBrowserController: UIViewController, UIWebViewDelegate, UIActionSheetDelegate {
     
     var webView: UIWebView = UIWebView()
     var toolBar: UIToolbar = UIToolbar()
@@ -87,6 +87,17 @@ class WebBrowserController: UIViewController, UIWebViewDelegate {
     }
     
     func safari() {
+        // TODO: judge OS
+        if Util.osVersion() == "8.0" {
+            self.alertController()
+        }
+        else {
+            self.actionSheet()
+        }
+        
+    }
+    
+    func alertController() {
         let actionSheet: UIAlertController = UIAlertController(title: "ios8 action sheet", message: "message", preferredStyle: .ActionSheet)
         
         let otherAction1: UIAlertAction = UIAlertAction(title: "Open in Safari", style: UIAlertActionStyle.Default, handler: { action1 in
@@ -99,6 +110,27 @@ class WebBrowserController: UIViewController, UIWebViewDelegate {
         actionSheet.addAction(otherAction1)
         actionSheet.addAction(cancelAction)
         self.presentViewController(actionSheet, animated: true, completion: nil)
+    }
+    
+    func actionSheet() {
+        let actionSheet: UIActionSheet = UIActionSheet()
+        actionSheet.title = "ios7 action sheet"
+        actionSheet.delegate = self
+        actionSheet.addButtonWithTitle("Open in Safari")
+        actionSheet.addButtonWithTitle("Cancel")
+        actionSheet.cancelButtonIndex = 1
+        actionSheet.showFromToolbar(self.toolBar)
+    }
+    
+    func actionSheet(myActionSheet: UIActionSheet!, clickedButtonAtIndex buttonIndex: Int) {
+        switch (buttonIndex) {
+            case 0:
+                let url: NSURL = self.webView.request.URL
+                UIApplication.sharedApplication().openURL(url)
+                break
+            default:
+                break
+        }
     }
     
     func webViewDidStartLoad(webView: UIWebView!) {

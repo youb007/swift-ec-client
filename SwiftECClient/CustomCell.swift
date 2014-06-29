@@ -48,7 +48,6 @@ class CustomCell: UITableViewCell {
     }
     
     func setItemEntity(entity: NSDictionary, indexPath: NSIndexPath) {
-        
         self.titleLabel.text = entity["Name"] as String
         self.descriptionLabel.text = entity["Description"] as String
         

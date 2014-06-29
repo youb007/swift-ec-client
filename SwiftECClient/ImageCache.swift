@@ -13,7 +13,6 @@ class ImageCache: NSObject {
     var imageCache: Dictionary<NSIndexPath, UIImage> = Dictionary<NSIndexPath, UIImage>()
         
     func dequeueImageByIndexPath(indexPath: NSIndexPath) -> UIImage? {
-        
         if let validImage = self.imageCache[indexPath] {
             return validImage as UIImage
         }
