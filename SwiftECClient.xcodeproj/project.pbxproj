@@ -18,6 +18,9 @@
 		5C721AB11946976500EF492E /* APPID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C721AB01946976500EF492E /* APPID.swift */; };
 		5C753DB31950F64D0083DC2B /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C753DB21950F64D0083DC2B /* Util.swift */; };
 		5C8B8D24195EF7050054EA4D /* WebBrowserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8B8D23195EF7050054EA4D /* WebBrowserController.swift */; };
+		5CAFE0FF1960553C00CD9B6F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CAFE0FE1960553C00CD9B6F /* UIKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		5CAFE1011960558000CD9B6F /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CAFE1001960558000CD9B6F /* Security.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		5CAFE103196055BE00CD9B6F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CAFE102196055BE00CD9B6F /* Foundation.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +49,9 @@
 		5C721AB01946976500EF492E /* APPID.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APPID.swift; sourceTree = "<group>"; };
 		5C753DB21950F64D0083DC2B /* Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		5C8B8D23195EF7050054EA4D /* WebBrowserController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebBrowserController.swift; sourceTree = "<group>"; };
+		5CAFE0FE1960553C00CD9B6F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		5CAFE1001960558000CD9B6F /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		5CAFE102196055BE00CD9B6F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +59,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5CAFE103196055BE00CD9B6F /* Foundation.framework in Frameworks */,
+				5CAFE1011960558000CD9B6F /* Security.framework in Frameworks */,
+				5CAFE0FF1960553C00CD9B6F /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,6 +81,7 @@
 				5C721A8F19468D6B00EF492E /* SwiftECClient */,
 				5C721A9D19468D6B00EF492E /* SwiftECClientTests */,
 				5C721A8E19468D6B00EF492E /* Products */,
+				5CAFE1041960562E00CD9B6F /* Framework */,
 			);
 			sourceTree = "<group>";
 		};
@@ -125,6 +135,16 @@
 				5C721A9F19468D6B00EF492E /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		5CAFE1041960562E00CD9B6F /* Framework */ = {
+			isa = PBXGroup;
+			children = (
+				5CAFE102196055BE00CD9B6F /* Foundation.framework */,
+				5CAFE1001960558000CD9B6F /* Security.framework */,
+				5CAFE0FE1960553C00CD9B6F /* UIKit.framework */,
+			);
+			path = Framework;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -338,6 +358,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = SwiftECClient/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -349,6 +370,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = SwiftECClient/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
